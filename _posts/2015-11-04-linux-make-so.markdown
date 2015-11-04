@@ -13,14 +13,17 @@ tags:
     - 动态链接库
 ---
 
-##1.  静态链接库	
+<p id = "build"></p>
+---
+
+## 1.  静态链接库	
 　　静态库是obj文件的集合，一般以“.a”为后缀。静态库的有点事可以不用重新编译源程序，直接进行程序的重新链接，节省编译时间。开发者可以提供库文件而不用开放源代码。
 　　命令：
 　　``` $ar -rcs obj文件1 obj文件2```
 　　例如我们编写一个string.cc的文件，里面定义了一个求字符串长度的函数。
 　　
 
-```c++
+```
 #define END '\0'
 
 int my_strlen(char *str)
@@ -34,9 +37,11 @@ int my_strlen(char *str)
 }
 ```
 　　用如下命令生产静态库文件：
-　　``` 
+　　
+    ``` 
 　　$ c++ -c string.cc
-　　$ ar -rcs libstr.a string.o ```
+　　$ ar -rcs libstr.a string.o 
+    ```
 
 　　编写一个测试文件test.cc，内容如下：
 　　
@@ -56,7 +61,9 @@ int main()
 
 　　编译命令： ```c++ -o test test.cc libstr.a```或者```c++ -o test test.cc -L./ -lstr```
 
-##2. 生成和使用动态链接库
+---
+
+## 2. 生成和使用动态链接库
 　　动态链接库是程序运行时加载。生成动态链接库使用"-fpic"选项，例如：```c++ -shared -fpic -o libstr.so string.cc```。动态库不能随意使用，需要在程序运行时制定系统的动态库搜素路径，让系统找到所需要的动态库。系统的配置文件"/etc/ld.so.conf"是动态库的搜索路径配置文件。
 　　动态库管理命令ldconfig。
 　　ldconfig的作用是在系统默认搜索路径和动态链接库配置文件和中所列出的目录里搜索动态库，创建动态链接装入程序需要的链接和缓存文件。搜索完毕后将结果写入到缓存文件/etc/ld.so.cache中。
@@ -68,7 +75,7 @@ int main()
 	　```export LD_LIBRARY_PATH=/home/***/test/linux_network_program/lib_test```
 
 
-##3. 加载动态库
+## 3. 加载动态库
 　　动态加载库主要的函数有dlopen(), dlerror(), dlsym()和dlclose()。
 　　dlopen()，按照用户指定的方式打开动态库。原型：```void * dlopen(const char * filename, int flag)```。 filename为动态库的名，flag打开方式，一般为“RTLD_LASY”。函数返回值为库的指针。
 　　dlsym()获取函数指针。

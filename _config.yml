@@ -1,0 +1,77 @@
+# Site settings
+title: Jeanphorn Blog
+SEOTitle: Jeanphorn's 博客 | Jeanphorn Blog
+header-img: img/home-bg-o.jpg
+email: Li.jeanphorn@gmail.com
+description: " Jeanphorn，Linux programmer，Server Engineer，Big Data | 这里是 @Jeanphorn 的个人博客，Welcome to share the world."
+keyword: "Jeanphorn, 李建方, Linux, C++, Java, php, Hadoop, Storm, Redis, HDFS, Network program, protobuf, python, mysql"
+url: "http://jeanphorn.github.io"              # your host, for absolute URL
+baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
+
+
+
+# SNS settings
+RSS: false
+weibo_username:     小猿12
+github_username:    jeanphorn  
+twitter_username:   JeanphornLi
+csdn_username:      jeanphorn
+
+
+
+# Build settings
+highlighter: pygments
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+
+
+
+# Duoshuo settings
+duoshuo_username: 小猿12
+# Share component is depend on Comment so we can NOT use share only.
+duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+
+
+
+
+# Analytics settings
+# Baidu Analytics
+ba_track_id: 93de041a6cd8e41c5b484cf107e530f9
+# Google Analytics
+ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+ga_domain: jeanphorn.github.io
+
+
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "Love job, love family and love life."
+sidebar-avatar: /img/avatar-jeanphorn.jpg     # use absolute URL.
+
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+# Friends
+friends: [
+    {
+        title: "低调小一的博客",
+        href: "http://blog.csdn.net/wzy_1988"
+    }
+]

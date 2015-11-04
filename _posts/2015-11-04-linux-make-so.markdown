@@ -1,3 +1,18 @@
+---
+layout:     post
+title:      "Linux 静态和动态链接库的使用 dlopen()加载动态库文件"
+subtitle:   "生成和使用.a  .so文件，动态加载so文件"
+date:       2015-11-04
+author:     "jeanphorn"
+header-img: "img/post-bg-dlopen.jpg"
+tags:
+    - Linux
+    - dlopen
+    - dlsys
+    - 静态链接库
+    - 动态链接库
+---
+
 ##1.  静态链接库	
 　　静态库是obj文件的集合，一般以“.a”为后缀。静态库的有点事可以不用重新编译源程序，直接进行程序的重新链接，节省编译时间。开发者可以提供库文件而不用开放源代码。
 　　命令：

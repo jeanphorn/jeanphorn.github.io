@@ -1,7 +1,7 @@
 # Site settings
 title: Jeanphorn Blog
-SEOTitle: Jeanphorn's 博客 | Jeanphorn Blog
-header-img: img/home-bg-self.jpg
+SEOTitle: Jeanphorn's 博客 | Jeanphorn's Blog
+header-img: img/home-bg-o.jpg
 email: Li.jeanphorn@gmail.com
 description: " Jeanphorn，Linux programmer，Server Engineer，Big Data | 这里是 @Jeanphorn 的个人博客，Welcome to share the world."
 keyword: "Jeanphorn, 李建方, Linux, C++, Java, php, Hadoop, Storm, Redis, HDFS, Network program, protobuf, python, mysql"

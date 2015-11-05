@@ -5,13 +5,14 @@ body {
 	text-align:center;
 }
 #tag-cloud {
-	position:relative; 
+	/*position:relative; 
 	width:250px; 
 	height:250px; 
 	margin: 0; 
 	float:center;
 	text-align:center;
-	border:1px solid red;
+	*/
+	margin-bottom: -5px;
 }
 #tag-cloud a {
 	position:absolute; 

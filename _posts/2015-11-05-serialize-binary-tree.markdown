@@ -6,14 +6,18 @@ date:       2015-11-05 20:50:00
 author:     "jeanphorn"
 header-img: "img/in-post/post-serialize-bintree.png"
 tags:
-    - 二叉树 序列化 反序列化
+    - 二叉树 
+	- 序列化 
+	- 反序列化
 ---
 
-##1. 描述
+<p id = "build"></p>
+
+## 1. 描述
 　　设计一个算法，实现二叉树的序列化与反序列化。如何实现没有限制，只要保证一颗二叉树可以序列化为一个string串，然后这个string串可以反序列化为原来的二叉树即可。详细描述如下：
 　　![problem](http://img.blog.csdn.net/20151030105003302?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-##2. 方法与思路
+## 2. 方法与思路
 　　采用先序遍历的思路，为了保证重构二叉树时，节点能够插入到数中的正确位置，空节点用“#”保存。为了保证从字符串中读取节点值方便，节点的值在字符串中用空格分开。重构时依旧安装先序的思想递归实现即可。
 　　
 　　序列化serialize：
@@ -36,7 +40,7 @@ tags:
 
 代码：
 
-```c++
+```
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -46,9 +50,9 @@ tags:
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
 class Codec {
-public:
-    
+public: 
     void serialize(TreeNode* root, string &str) {
         if(!root) str += "# ";
         else {
@@ -90,5 +94,6 @@ public:
         return root;
     }   
 };
+
 ```
 

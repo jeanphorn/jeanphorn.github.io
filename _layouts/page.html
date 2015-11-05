@@ -89,7 +89,7 @@ layout: default
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="{{/tags/ | prepend: site.baseurl }}">FEATURED TAGS</a></h5>
 		    
-                    <div id="tag-cloud" style="float:right">
+                    <div id="tag-cloud" >
                         {% for tag in site.tags %}
                             {% if tag[1].size > {{site.featured-condition-size}} %}
                                 <a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">

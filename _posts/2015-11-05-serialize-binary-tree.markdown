@@ -23,7 +23,7 @@ tags:
 　　序列化serialize：
 　　
 
- 1. $if (root = null)$ : str += "# "
+ 1. if (root = null) : str += "# "
  2. 递归
 	 str += root->data+ " "
 	 serialize(root->left, str)

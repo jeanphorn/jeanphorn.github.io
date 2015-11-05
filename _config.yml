@@ -1,7 +1,7 @@
 # Site settings
 title: Jeanphorn Blog
 SEOTitle: Jeanphorn's 博客 | Jeanphorn Blog
-header-img: img/home-bg-o.jpg
+header-img: img/home-bg-self.jpg
 email: Li.jeanphorn@gmail.com
 description: " Jeanphorn，Linux programmer，Server Engineer，Big Data | 这里是 @Jeanphorn 的个人博客，Welcome to share the world."
 keyword: "Jeanphorn, 李建方, Linux, C++, Java, php, Hadoop, Storm, Redis, HDFS, Network program, protobuf, python, mysql"
@@ -12,7 +12,7 @@ baseurl: ""                             # for example, '/blog' if your blog host
 
 # SNS settings
 RSS: false
-weibo_username:     小猿12
+weibo_username:     u/2336246317
 github_username:    jeanphorn  
 twitter_username:   JeanphornLi
 csdn_username:      jeanphorn

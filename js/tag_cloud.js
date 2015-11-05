@@ -7,7 +7,7 @@ var active = false;
 var lasta = 1;
 var lastb = 1;
 var distr = true;
-var tspeed=4;
+var tspeed=1;
 var size=200;
 
 var mouseX=0;

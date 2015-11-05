@@ -3,7 +3,7 @@
 ## Dynamic cloud tag
 
 Add dynamic cloud tag for Featured tags. The sources locate at ./css/tag_cloud.css and ./js/tag_cloud.js. to use them just like follow:
-    <div id="tag-cloud"> <a>...</a> </div>
+    \<div id="tag-cloud"\> \<a\>...\</a\>\</div\>
 [Featured tag](/img/tag_cloud_readme.png)
 
 

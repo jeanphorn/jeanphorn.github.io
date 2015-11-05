@@ -7,8 +7,8 @@ author:     "jeanphorn"
 header-img: "img/in-post/post-serialize-bintree.png"
 tags:
     - 二叉树 
-	- 序列化 
-	- 反序列化
+    - 序列化
+    - 反序列化
 ---
 
 <p id = "build"></p>

@@ -1,5 +1,11 @@
 #Jeanphorn Blog
 
+## Dynamic cloud tag
+
+Add dynamic cloud tag for Featured tags. The sources locate at ./css/tag_cloud.css and ./js/tag_cloud.js. to use them just like follow:
+    <div id="tag-cloud"> <a>...</a> </div>
+[Featured tag](/img/tag_cloud_readme.png)
+
 
 ##Include
 A full Jekyll environment is included with this theme. If you have Jekyll installed, simply run jekyll serve in your command line and preview the build in your browser. You can use jekyll serve --watch to watch for changes in the source files as well.

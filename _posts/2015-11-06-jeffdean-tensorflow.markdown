@@ -23,7 +23,7 @@ Jeff Dean, senior fellow, Google Knowledge Group
 【Jeff Dean】在过去的几年间，我们已经建立了两代用于训练和部署神经网络的计算机系统，并且将这些系统应用于解决很多在传统上来说对计算机而言很难的问题。我们对许多这些领域的最新技术做了很大的改进，我们的软件系统和算法已经被Google的很多小组采用，运用在语音识别、图像识别、视觉检测任务、语言建模、语言翻译和许多其它任务的模型训练上。**在这次讲演中，我会介绍我们从第一代分布式训练系统中得到的经验教训，并讨论在设计第二代系统时的一些选择。**然后我会讨论一下我们将通过哪些方式把它运用到Google的大量产品上，在这方面通常我们会与其他小组有密切的合作。
 
 [Google 资深专家Jeff Dean 关于深度学习 TensorFlow演讲视频："Large-Scale Deep Learning for Building Intelligent Computer Systems.mp4"下载](http://vdisk.weibo.com/s/zTp6HtYlPosqi)
-
+[TensorFlow演讲稿 PDF版下载](http://vdisk.weibo.com/s/zTp6HtYlPosdP)
 # 2. 概述
 第一代系统DistBeliet在可扩缩性上表现很好，但在用于研究时灵活性达不到预期。对问题空间的更深理解让我们可以做出一些大幅度的简化。
 

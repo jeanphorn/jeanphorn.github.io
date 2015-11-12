@@ -90,11 +90,11 @@ layout: default
 					<div>
 						<ul>
 							{% for category in site.categories %}
-								<a href="/category_index.html?cat={{category|first}}/">{{ category|first }}
-								<li style="list-style-type:none"> 
-									<small> &nbsp &#40 {{ category|last|size}} &#41</small>
+								<li style="list-style-type:none">
+									<a href="/category_index.html?cat={{category|first}}">{{ category|first }}
+										<small> &#40 {{ category|last|size}} &#41</small>
+									</a>
 								</li>
-								</a>
 							{% endfor %}
 						</ul> 
 					</div>

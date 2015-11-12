@@ -29,8 +29,8 @@
 #sidebar .widget ul dl,
 #sidebar .widget ol dl,
 #sidebar .widget dl dl {
-  list-style: disc;
-  margin-left: 20px;
+  list-style: none;
+  margin-left: 2px;
 }
 #sidebar .search {
   margin-bottom: 30px;

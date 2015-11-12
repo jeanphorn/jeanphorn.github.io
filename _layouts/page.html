@@ -89,14 +89,12 @@ layout: default
                 <section>
                     <hr><h5>Category</h5></hr>
 					<div id="sidebar" class="widget tag">
-						<ul>
+						<ul class="entry">
 							{% for category in site.categories %}
-								<a href="/categories/{{category|first}}/">
-								<li>
-									{{ category|first }} 
-									{{ category|last|size}}
+								<a href="/categories/{{category|first}}/"></a>
+								<li>{{ category|first }} 
+									<small>::before{{ category|last|size}}::after</small>
 								</li>
-								</a>
 							{% endfor %}
 						</ul> 
 					</div>

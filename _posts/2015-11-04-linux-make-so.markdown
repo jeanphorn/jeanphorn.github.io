@@ -5,6 +5,8 @@ subtitle:   "生成和使用.a  .so文件，动态加载so文件"
 date:       2015-11-04
 author:     "jeanphorn"
 header-img: "img/post-bg-dlopen.jpg"
+categories:
+    - Linux
 tags:
     - Linux
     - dlopen

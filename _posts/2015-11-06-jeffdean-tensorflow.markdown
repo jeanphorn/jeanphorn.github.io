@@ -5,6 +5,8 @@ subtitle:   "Large-Scale Deep Learning for Building Intelligent Computer Systems
 date:       2015-11-06 18:30:00
 author:     "jeanphorn"
 header-img: "img/in-post/post-tensorflow.jpg"
+categories:
+    - IT information
 tags:
     - deep learning 
     - 深度学习

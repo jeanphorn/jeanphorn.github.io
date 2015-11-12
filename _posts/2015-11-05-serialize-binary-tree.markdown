@@ -5,6 +5,8 @@ subtitle:   " \"Serialize and deserialize binary tree\""
 date:       2015-11-05 20:50:00
 author:     "jeanphorn"
 header-img: "img/in-post/post-serialize-bintree.png"
+categories:
+    - algorithm
 tags:
     - 二叉树 
     - 序列化

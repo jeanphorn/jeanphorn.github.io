@@ -60,7 +60,8 @@ sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "Love job, love family and love life."
 sidebar-avatar: /img/avatar-jeanphorn.jpg     # use absolute URL.
 
-
+#category settings 
+category-tags: true
 
 # Featured Tags
 featured-tags: true                     # whether or not using Feature-Tags

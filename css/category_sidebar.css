@@ -1,0 +1,64 @@
+#sidebar .widget {
+  background: #fff;
+  -webkit-box-shadow: 1px 2px 3px #ddd;
+  box-shadow: 1px 2px 3px #ddd;
+  margin-bottom: 30px;
+  word-wrap: break-word;
+}
+#sidebar .widget .title {
+  padding: 15px 20px;
+  font-size: 1em;
+  border-bottom: 1px solid #ddd;
+  font-weight: normal;
+}
+#sidebar .widget .entry {
+  font-size: 0.9em;
+  padding: 15px 20px;
+}
+#sidebar .widget ul,
+#sidebar .widget ol,
+#sidebar .widget dl {
+  list-style: none;
+}
+#sidebar .widget ul ul,
+#sidebar .widget ol ul,
+#sidebar .widget dl ul,
+#sidebar .widget ul ol,
+#sidebar .widget ol ol,
+#sidebar .widget dl ol,
+#sidebar .widget ul dl,
+#sidebar .widget ol dl,
+#sidebar .widget dl dl {
+  list-style: disc;
+  margin-left: 20px;
+}
+#sidebar .search {
+  margin-bottom: 30px;
+}
+#sidebar .search input {
+  background: #fff;
+  font-family: Helvetica Neue, Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+  font-style: italic;
+  font-size: 1em;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #777;
+}
+#sidebar .search input:focus {
+	  color: #000;
+}
+#sidebar .tag small {
+  margin-left: 15px;
+    color: #777;
+}
+#sidebar .tag small:before {
+  content: '(';
+}
+#sidebar .tag small:after {
+  content: ')';
+}
+

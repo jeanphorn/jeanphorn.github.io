@@ -16,6 +16,7 @@ layout: default
         </div>
     </div>
 	<link rel="stylesheet" type="text/css" href="../css/tag_cloud.css" /> 
+	<link rel="stylesheet" type="text/css" href="../css/category_sidebar.css" /> 
 	<script type="text/javascript" src="../js/tag_cloud.js"></script> 
 </header>
 
@@ -86,16 +87,19 @@ layout: default
                 <!-- Category Tags -->
                 {% if site.category-tags %}
                 <section>
-     	          	<ul>
-						{% for category in site.categories %}
-							<a href="/categories/{\{category|first}\}/">
-							<li>
-								{{ category|first }} 
-								{{ category|last|size}}
-							</li>
-							</a>
-						{\% endfor %}
-					</ul> 
+                    <hr><h5>Category</h5></hr>
+					<div id="sidebar" class="widget tag">
+						<ul>
+							{% for category in site.categories %}
+								<a href="/categories/{{category|first}}/">
+								<li>
+									{{ category|first }} 
+									{{ category|last|size}}
+								</li>
+								</a>
+							{% endfor %}
+						</ul> 
+					</div>
 				</section>
                 {% endif %}
 

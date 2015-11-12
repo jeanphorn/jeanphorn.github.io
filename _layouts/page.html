@@ -91,9 +91,9 @@ layout: default
 					<div id="sidebar" class="widget tag">
 						<ul class="entry">
 							{% for category in site.categories %}
-								<a href="/categories/{{category|first}}/"></a>
-								<li>{{ category|first }} 
-									<small>::before{{ category|last|size}}::after</small>
+								<a href="/categories/{{category|first}}/">{{ category|first }} </a>
+								<li> 
+									<small> &nbsp &#40 {{ category|last|size}} &#41</small>
 								</li>
 							{% endfor %}
 						</ul> 

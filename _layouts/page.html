@@ -89,12 +89,12 @@ layout: default
                     <hr><h5>Category</h5></hr>
 					<div>
 						<style>
-							ul，li{ margin：0px；padding：0px；} 
+							ul,li{ margin：0px；padding：0px；} 
 						</style>
 						<ul>
 							{% for category in site.categories %}
 								<li style="list-style-type:none">
-									<a href="/showcategroy.html?cat={{category|first}}">{{ category|first }}
+									<a href="/showcategroy.html">{{ category|first }}
 										<small> &#40 {{ category|last|size}} &#41</small>
 									</a>
 								</li>

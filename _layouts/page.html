@@ -93,8 +93,8 @@ layout: default
 						</style>
 						<ul>
 							{% for category in site.categories %}
-								<li style="list-style-type:none">
-									<a href="/showcategroy/#{{ category[0]}} " title="{{ category[0]}}" >{{ category|first }}
+								<li float="left" style="list-style-type:none">
+									<a href="/showcategory/#{{ category[0]}} " title="{{ category[0]}}" >{{ category|first }}
 										<small> &#40 {{ category|last|size}} &#41</small>
 									</a>
 								</li>

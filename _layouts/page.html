@@ -83,6 +83,22 @@ layout: default
                 col-xs-12
                 sidebar-container
             ">
+                <!-- Category Tags -->
+                {% if site.category-tags %}
+                <section>
+     	          	<ul>
+						{% for category in site.categories %}
+							<a href="/categories/{\{category|first}\}/">
+							<li>
+								{{ category|first }} 
+								{{ category|last|size}}
+							</li>
+							</a>
+						{\% endfor %}
+					</ul> 
+				</section>
+                {% endif %}
+
                 <!-- Featured Tags -->
                 {% if site.featured-tags %}
                 <section>

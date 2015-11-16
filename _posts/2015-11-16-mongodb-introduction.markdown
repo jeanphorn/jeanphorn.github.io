@@ -34,9 +34,8 @@ MongoDB主要特点：
 Linux可以用一些命令直接下载：
 
 ```
-{% highlight bash lineno %}
 wget https://fastdl.mongodb.org/linux/mongodb-linux-i686-3.0.7.tgz
-{% endhighlight %}
+
 ```
 
 解压安装包，并放在合适的目录中。
@@ -48,20 +47,16 @@ wget https://fastdl.mongodb.org/linux/mongodb-linux-i686-3.0.7.tgz
 -------
 
 ```
-{% highlight bash lineno %}
 $ tar -zxvf  mongodb-linux-i686-3.0.7.tgz -C ./	
 $ mv  mongodb-linux-i686-3.0.7 ~/workspace/software/mongodb
-{% endhighlight %}
 
 ```
 
 可以通过"~/workspace/mongodb/bin/mongo"运行bin目录下的mongo程序，但每次都这样这样太麻烦了，将bin目录添加到系统的PATH变量中。这里我在家目录下建立一个软连接链接到mongo的bin目录（直接添加PATH路径没有成功，推测是挂载磁盘的原因）。
 
 ```
-{% highlight bash lineno %}
 $ ln -sf /home/jeanphorn/workspace/software/mongodb/bin /home/jeanphorn/bin
 $ export PATH=$PATH:/home/jeanphorn/bin
-{% endhighlight %}
 
 ```
 

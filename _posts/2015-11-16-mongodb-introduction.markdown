@@ -36,6 +36,7 @@ Linux可以用一些命令直接下载：
 ```
 {% highlight bash lineno %}
 wget https://fastdl.mongodb.org/linux/mongodb-linux-i686-3.0.7.tgz
+{% endhighlight %}
 ```
 
 解压安装包，并放在合适的目录中。
@@ -50,6 +51,7 @@ wget https://fastdl.mongodb.org/linux/mongodb-linux-i686-3.0.7.tgz
 {% highlight bash lineno %}
 $ tar -zxvf  mongodb-linux-i686-3.0.7.tgz -C ./	
 $ mv  mongodb-linux-i686-3.0.7 ~/workspace/software/mongodb
+{% endhighlight %}
 
 ```
 
@@ -59,6 +61,7 @@ $ mv  mongodb-linux-i686-3.0.7 ~/workspace/software/mongodb
 {% highlight bash lineno %}
 $ ln -sf /home/jeanphorn/workspace/software/mongodb/bin /home/jeanphorn/bin
 $ export PATH=$PATH:/home/jeanphorn/bin
+{% endhighlight %}
 
 ```
 

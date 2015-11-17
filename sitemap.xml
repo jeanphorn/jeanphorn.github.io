@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<!-- Free Sitemap Generator http://www.sitemapx.com -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://jeanphorn.github.io/</loc>
+<priority>1.0</priority>
+<lastmod>2015-11-17T15:09:24+00:00</lastmod>
+<changefreq>Daily</changefreq>
+</url>
+<url>
+<loc>http://jeanphorn.github.io/about/</loc>
+<priority>0.6</priority>
+<lastmod>2015-11-17T15:09:25+00:00</lastmod>
+<changefreq>Daily</changefreq>
+</url>
+<url>
+<loc>http://jeanphorn.github.io/profile/</loc>
+<priority>0.6</priority>
+<lastmod>2015-11-17T15:09:27+00:00</lastmod>
+<changefreq>Daily</changefreq>
+</url>
+<url>
+<loc>http://jeanphorn.github.io/showcategory/</loc>
+<priority>0.6</priority>
+<lastmod>2015-11-17T15:09:27+00:00</lastmod>
+<changefreq>Daily</changefreq>
+</url>
+<url>
+<loc>http://jeanphorn.github.io/tags/</loc>
+<priority>0.6</priority>
+<lastmod>2015-11-17T15:09:28+00:00</lastmod>
+<changefreq>Daily</changefreq>
+</url>
+</urlset>

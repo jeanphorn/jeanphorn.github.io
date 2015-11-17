@@ -16,10 +16,16 @@ google_verify: xcuAbsVWfO6omR4WpG9GaghoCbl26_cbNOsxerwfb9w
 
 head.html or default.html (default layout):
 
+```
 {% if site.google_verify %}
     <meta name="google-site-verification" content="{{ site.google_verify }}">
 {% endif %}
-	No reason to throw a gem or an extra file in ther
+
+```
+
+No reason to throw a gem or an extra file in ther
+
+
 ![verify](/img/readme-verify.png)
 
 ##Include

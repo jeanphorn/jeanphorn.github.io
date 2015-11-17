@@ -7,6 +7,21 @@ Add dynamic cloud tag for Featured tags. The sources locate at ./css/tag_cloud.c
 ![Featured tag](/img/tag_cloud_readme.png)
 
 
+## Google verify site
+use the meta tag with a custom variable set in my _config.yml:
+
+_config.yml:
+
+google_verify: xcuAbsVWfO6omR4WpG9GaghoCbl26_cbNOsxerwfb9w
+
+head.html or default.html (default layout):
+
+{% if site.google_verify %}
+    <meta name="google-site-verification" content="{{ site.google_verify }}">
+{% endif %}
+	No reason to throw a gem or an extra file in ther
+![verify](/img/readme-verify.png)
+
 ##Include
 A full Jekyll environment is included with this theme. If you have Jekyll installed, simply run jekyll serve in your command line and preview the build in your browser. You can use jekyll serve --watch to watch for changes in the source files as well.
 

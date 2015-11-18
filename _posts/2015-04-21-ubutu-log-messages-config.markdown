@@ -2,7 +2,7 @@
 layout:     post
 title:      "ubutu系统日志配置 /var/log/messages" 
 subtitle:   "ubutu下配置系统日志/var/log/messages, 配置/etc/syslog.conf" 
-date:       2015-004-21 10:46:00
+date:       2015-04-21 10:46:00
 author:     "jeanphorn"
 header-img: "img/in-post/cat-linux.jpg"
 categories:

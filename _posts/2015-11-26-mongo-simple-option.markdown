@@ -1,6 +1,7 @@
 ---
 layout:     post
 title:      "MongoDB简单基本操作 创建、删除、插入文档" 
+permalink:   mongodb-simple-option
 subtitle:   "本文主要介绍MongoDB的一些简单基本的操作，数据库的创建、删除和文档的插入。后续会有其他操作的介绍"
 date:       2015-11-26 17:10:00
 author:     "jeanphorn"

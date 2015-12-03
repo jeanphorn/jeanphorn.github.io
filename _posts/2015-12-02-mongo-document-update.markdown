@@ -1,6 +1,7 @@
 ---
 layout:     post
 title:      "MongoDB更新文档，修改字段和变量使用" 
+permalink:   mongodb-update-document
 subtitle:   "本文主要介绍MongoDB文档更新，文档中记录字段名称和和值得修改，增加字段。update()的使用方式，以及变量的访问方式介绍"
 date:       2015-12-02 18:15:00
 author:     "jeanphorn"

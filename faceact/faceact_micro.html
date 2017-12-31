@@ -1,0 +1,428 @@
+<!--
+    Powered By nodeppt - This is probably the best web presentation tool so far!
+    version: 1.4.5
+    site: https://github.com/ksky521/nodeppt
+    date: 
+-->
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>国庆换脸服务  - By 李建方</title>
+    <link rel="stylesheet" media="all" href="./css/nodeppt.css">
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="./css/phone.css">
+    
+    <link rel="stylesheet" href="./js/highlight/styles/monokai_sublime.css">
+    <link rel="stylesheet" href="./css/font-awesome.css">
+    
+<link rel="stylesheet" href="./css/theme.moon.css">
+</head>
+<body>
+<div class="slides">
+    <slides id="container">
+        <slide class="slide"><section class="slide-wrapper"><article class="flexbox vcenter">
+<h1>国庆换脸活动服务遇到的哪些麻烦事儿</h1>
+<h2>Reporter：李建方</h2>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>背景</h2>
+<hr>
+<h3>为迎国庆和花椒相机带量进行的一次换脸活动。<pre></h3>
+<hr>
+<div class="columns2">
+    <img src="http://p0.qhimg.com/t01d4798b8ea6992588.jpg" /> &nbsp
+    <img src="http://p0.qhimg.com/t01991ced0363c64260.jpg" /> &nbsp
+    <img src="http://p0.qhimg.com/t014a5db3f25fb9d14b.jpg" /> 
+</div>
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>资源准备</h2>
+<ul class="flexbox vleft">
+<li>智能研究院同事提供了面部识别及替换程序；<ul>
+<li>模型数据</li>
+<li>面部识别lib库</li>
+<li>部分识别代码（最初只有一个二进制程序，经沟通获取部分代码）</li>
+</ul>
+</li>
+<li>设计同学提供底图素材</li>
+<li>自行负责关键点和掩图的产生</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>方案讨论</h2>
+<ul class="flexbox vleft">
+<li><p><input type="checkbox" disabled="disabled"/> <strong>直接调用二进制程序</strong></p>
+<ul class="flexbox vleft">
+<li>需要从磁盘读取源图片，底图，掩图，关键点文件; </li>
+<li>每次需要磁盘加载模型数据；</li>
+<li>单张处理<font color="red">耗时1s以上</font>；</li>
+<li>结果图片输出到磁盘；</li>
+</ul>
+</li>
+<li><p class="flexbox vleft"><span><input type="checkbox" checked="checked" disabled="disabled"/> <strong>集成到服务程序中</strong> <span></p>
+<ul>
+<li>从流中读取源图片</li>
+<li>底图、掩图、面部关键点文件初始化时加载，无需重复加载；</li>
+<li>生成的结果照片直接上传图床，不落磁盘；</li>
+</ul>
+</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>技术路线</h2>
+<hr>
+<p><strong><pre>按照花椒相机服务端新的架构思想，采用微服务架构，换脸服务作为一个常用活动的微服务，
+在服务体系中可插拔。 </pre></strong></p>
+<pre>- 原始图片文件经前端压缩后，base64编码按统一的协议进行通信；</pre>
+<pre>- gateway层和微服务层使用grpc进行通信，协议使用protobuf3；</pre>
+<pre>- 图片的识别，换脸，拼接，上传图床均集成到无服务中；</pre>
+<pre>- 两种交互方式:</pre>
+    <pre>同步。精力集中在效果调优上了，目前采用该种方式; </pre>
+    <pre>异步。通过任务队列和临时存储做异步化请求。可增大并发数；</pre>
+
+<hr>
+<img src="http://p0.qhimg.com/t0168e1571ef35da9e9.png" height="400"/>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>需解决的主要问题</h2>
+<p><br>
+<br></p>
+<p class="flexbox vleft"><span><input type="checkbox" checked="checked" disabled="disabled"/> <strong>1. grpc垮语言调用</strong> <span></p>
+<ul>
+<li>换脸主代码为c++实现，点用so库；</li>
+<li>微服务grpc server需c++实现；gateway层为go实现；</li>
+</ul>
+<p class="flexbox vleft"><span><input type="checkbox" checked="checked" disabled="disabled"/> <strong>2. 图片拼接</strong> <span></p>
+<ul>
+<li>需要代码将多张照片生成长图；</li>
+<li>需要将不同二维码底图和相应结果图拼接；</li>
+</ul>
+<p class="flexbox vleft"><span><input type="checkbox" checked="checked" disabled="disabled"/> <strong>3. 图片上传图床</strong> <span></p>
+<p class="flexbox vleft"><span><input type="checkbox" checked="checked" disabled="disabled"/> <strong>4. <font color="red">变换效果优化</font></strong> <span></p>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>麻烦之一 &quot;图片上传图床&quot;</h2>
+<p><br></p>
+<hr>
+<p><pre>- 公司图床没有c++版sdk</p>
+<p><pre>- 有一个http api供调用，但缺乏详细文档说明；</p>
+<p><pre>- hulk部门对这个api图床服务目前只进行维护；</p>
+<hr>
+<h3>文档上教我们这样：</h3>
+<img src="http://p0.qhimg.com/t013c82392e6ba29076.png"/>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>麻烦之一 &quot;图片上传图床&quot;</h2>
+<p><br></p>
+<h3><strong>Actually, there is still something wrong... ...</strong></h3>
+<p><br></p>
+<blockquote>
+<p>在php中url编码分两种<code>urlencode</code>和<code>rawurlencode</code>, 不同之处在于他们对空格的处理，前者转换成&quot;+&quot;,后者转换成&quot;%20&quot;。所以，在c++的实现上，我们要采用后者。</p>
+</blockquote>
+<p><br></p>
+<ul class="flexbox vleft">
+<li>正确的使用姿势为：</li>
+</ul>
+<pre><code>for(int i = 0; i &lt; cnt; ++i) {
+        std::string imgStr = urlencode(imgs[i]); // urlencode为php中rawrulencode实现
+        if(i == 0) {
+            params[&quot;IMGSTREAM&quot;] += &quot;\&quot;&quot; + imgStr + &quot;\&quot;&quot;;
+        } else {
+            params[&quot;IMGSTREAM&quot;] += &quot;,\&quot;&quot; + imgStr + &quot;\&quot;&quot;;
+        }   
+    }   
+ params[&quot;IMGSTREAM&quot;] += &quot;]&quot;;
+ std::string postStr = HttpBuildQuery(params); //函数中对每一项参数的指再进行一边urlencode
+ std::string ret = curl_post(url, postStr);
+</code></pre><p class="flexbox vleft"><span><strong>注意</strong>：<font color="red" >图片要进行两次url编码</font> <span></p>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>麻烦之二 &quot;换脸效果不佳&quot;</h2>
+<p><br></p>
+<hr>
+<p><strong><pre>主要集中在一下几个方面</strong>: </pre> </p>
+<pre>- 脸部色差明显</pre> 
+<pre>- 有板块</pre>
+<pre>- 融合重影</pre>
+
+<hr>
+<div class="columns2">
+    <img src="http://p0.qhimg.com/t01bae32430ce60040b.jpg" >
+    <img src="http://p3.qhimg.com/t01d753ed1d7890cd6a.jpg" height="400">
+</div>
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><hgroup>
+<h2>解决之法</h2>
+<h2><br></h2>
+<ul>
+<li>不断调整融合区域，对比效果</li>
+<li>调整底图颜色，对比度</li>
+<li>由平均融合到前景融合</li>
+<li><font color="red">掩图渐变，混合融合，效果大为改善 </font></li>
+</ul>
+
+</hgroup><article>
+
+<div class="columns2">
+    <img src="http://p0.qhimg.com/t01f4ec8c40431477ac.jpg" height="400"> &nbsp &rArr; 
+    <img src="http://p0.qhimg.com/t01da8ddc62d12147e1.jpg" height="400"> 
+</div>
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>麻烦事之三 &quot;线程安全&quot;</h2>
+<p><br/></p>
+<blockquote>
+<p>根据强哥的担心之处：研究院同学多关注于算法，代码的性能和安全方面我们需要验证和压测下。果然，担心都是有道理的... ...</p>
+</blockquote>
+<p><br/></p>
+<p><img src="http://ws4.sinaimg.cn/large/9150e4e5ly1fdtm09zopog208c084wiw.gif" height="80">    <font color="red">面部检测库根本不支持并发啊!!!</font></p>
+<p><br/></p>
+<p class="flexbox vleft"><span><strong>我们的服务模型：</strong> <code>单进程动态多线程</code> <span></p>
+<p><br/></p>
+<pre><code>faceblend(24351)─┬─{faceblend}(24352)
+                 ├─{faceblend}(24353)
+                 ├─{faceblend}(30594)
+                 └─{faceblend}(5794)
+</code></pre>
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>问题排查及沟通解决</h2>
+<p><br/></p>
+<p><strong>根据dump信息，确定为面部检测部分问题，但是面部检测库我们没有源码，紧急联系智能研究院同学，经他们排查，可能为使用静态变量的缘故。</strong></p>
+<p><br/></p>
+<p>经过面部检测库的升级，不能并发的问题得以解决！</p>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>麻烦事之四 &quot;libcurl多线程并发问题&quot;</h2>
+<p><br/></p>
+<hr>
+<p><strong>描述：</strong> 增大并发量，到50并发的时候，程序出现crash。新的问题来了， 根据coredump信息，问题出自libcurl。</p>
+<hr>
+<p><br/></p>
+<blockquote>
+<p>经查相关资料，可能是用到了signals引发了crash，官方建议在多线程场景下应该设置CURLOPT_NOSIGNAL选项。</p>
+</blockquote>
+<p><br/></p>
+<pre><code>curl_easy_setopt(curl, CURLOPT_TIMEOUT, 8);
+curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);
+curl_easy_setopt(curl, CURLOPT_POSTFIELDS, info.data());
+</code></pre>
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>麻烦事之四 &quot;libcurl多线程并发问题&quot;</h2>
+<p><strong><pre>在设置了nosignal后，依然存在crash，继续查阅自资料... ...</pre></strong></p>
+<blockquote>
+<p><pre> curl_global_init, <font color="red">This function is not thread safe.</font>
+You must not call it when any other thread in the program (i.e. a threadsharing the same memory) is running.
+This function must be called atleast once within a program (a program is all the code that shares a memoryspace) 
+before the program calls any other function in libcurl.</p>
+</blockquote>
+<p><br/></p>
+<font size="4px">也就是说<code>curl_global_init</code>是非线程安全的，在所有的线程启动之前需要先调用它，因为在执行<code>curl_easy_init</code>的时候会检查global_init是否执行过，若没有执行过，就会被执行。</font>
+
+<p><br/></p>
+<p class="flexbox vleft"><span>那么正确的用法是在子线程启动之前就执行全局初始化： <span></p>
+<p><br></p>
+<pre><code>int main(int argc, char** argv)
+{
+    ... ... 
+    curl_global_init(CURL_GLOBAL_ALL);
+    bool ret = fb.Initialize(argv[1]);
+    RunServer(fb.config_.addr_);
+    curl_global_cleanup();
+}
+</code></pre>
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>麻烦事之四 &quot;libcurl多线程并发问题&quot;</h2>
+<p><strong><pre> 设置完成之后，问题依旧存在，继续查找资料，有可能是libcurl版本问题，我们的系统为centos6.5， curl版本仍为7.19，遂下载最新版本源码编译。</pre></strong></p>
+<p><br/></p>
+<p class="flexbox vleft"><span>考虑到有多台线上机，不方便逐台做升级，使用静态库，静态编译到服务程序中。 <span></p>
+<p><br/></p>
+<pre><code>LIBS := `pkg-config --libs grpc++ grpc` -Wl,-dn -lqoslib -lqh_tracker -lcurl -Wl,-dy -lgrpc -lgrpc++ -lgrpc++_reflection -lprotobuf \
+        -Wl,-dy -lopencv_imgproc -lopencv_highgui -lopencv_core -lopencv_video -lopencv_objdetect -lpthread -lrt
+</code></pre><p>问题最终得以解决!!!</p>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>麻烦事之五 &quot;内存泄露问题&quot;</h2>
+<p><br/></p>
+<blockquote>
+<p>在自以为问题应该差不多都解决了的时候，推倒线上，观察机器内存等状态。随着小部分的放量，新的问题有显示出来了... ...</p>
+</blockquote>
+<p><br>
+<img src="http://p0.qhimg.com/t01f94000fd9c3abffe.jpg"></p>
+<p><img src="http://ws4.sinaimg.cn/large/9150e4e5ly1fdtm09zopog208c084wiw.gif" height="80">    <font color="red">存在严重的内存泄露啊!!!，不到1小时内存打满！！！</font></p>
+<p><br/></p>
+<p><strong>没办法，先写个内存监控脚本，到达阈值重启程序！</strong></p>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>内存泄露排查</h2>
+<p><br></p>
+<ol>
+<li>使用ps命令获取进程号，再根据<code>pmap -d 24351</code>命令查看内存映射。
+<br></li>
+</ol>
+<pre><code>[root@k4686v /home/lijianfang]# pmap -d 24351
+24351:   ./faceblend /home/q/video_engine/faceblend/etc/face_blend.json
+Address           Kbytes Mode  Offset           Device    Mapping
+0000000000400000    1204 r-x-- 0000000000000000 008:00001 faceblend
+0000000000ea0000   44488 rw--- 0000000000000000 000:00000   [ anon ]
+0000039b338e000       4 rw--- 000000000018e000 008:00001 libc-2.12.so
+00000039b338f000      20 rw--- 0000000000000000 000:00000   [ anon ]
+00000039b3417000    2048 ----- 0000000000017000 008:00001 libpthread-2.12.so
+... ...
+00007fe614000000   65536 rw--- 0000000000000000 000:00000   [ anon ]
+00007fe61c000000   65480 rw--- 0000000000000000 000:00000   [ anon ]
+00007fe624000000   65524 rw--- 0000000000000000 000:00000   [ anon ]
+00007fe634000000   65536 rw--- 0000000000000000 000:00000   [ anon ]
+00007fe63c000000   65536 rw--- 0000000000000000 000:00000   [ anon ]
+... ...
+</code></pre><ul>
+<li>发现大量的在堆上分配的内存没有释放掉（anon一般为这种情况）。</li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>内存泄露排查</h2>
+<p><br></p>
+<hr class="flexbox vleft">
+<p><strong>使用valgrind工具进行内存泄露检查, 问题依旧在面部处理库上!</strong> </p>
+<pre><code>valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 
+         --track-fds=yes ./faceblend etc/face_blend.json
+</code></pre><hr>
+<p><img src="http://p0.qhimg.com/t01ef679607807fc81f.jpg"/>
+<img src="http://p0.qhimg.com/t010c463c98e2be7472.jpg"/ height="300"></p>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>内存泄露排查</h2>
+<p><br></p>
+<p class="flexbox vleft"><span>没有源码，联系智能研究院同事拿来代码一同排查，经过半晌努力，初步定位了<font color="red">两个问题：</font> <span></p>
+<ul>
+<li><p>1.new数组未释放</p>
+  <pre>* 程序在某处new了一个数组，但没有释放。</pre>
+  <pre>* 这个问题占内存泄露的一小部分。</pre></li>
+<li><p>2.<strong><font color="red">对象析构失败</font> </strong></p>
+  <pre>* 图像处理的对象包含了三层嵌套对象，其中含有一个图像vector的new，会使用大量内存；</pre>
+  <pre>* 析构方法类似下面(具体记不清了，大致表达下意思吧)：</pre>
+
+<pre><code>TrackHandler::~TrackHandler(void* handler) {
+
+      if(handler != NULL) {
+          handler-&gt;destroy()
+      }
+  }
+</code></pre><p>  <pre>* 正确的做法是将handler转换成具体类型的指针 </pre></p>
+<pre><code>Track *thandler = (Track*)handler;
+      ... ...
+      thandler-&gt;destroy();
+</code></pre></li>
+</ul>
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>内存泄露排查</h2>
+<p><br></p>
+<blockquote>
+<p>至此，内存泄露的问题解决了大部分，但依然存在小部分内存泄露，经和研究院同事协商，由于时间问题，在不影响线上的情况下就没在做紧急排查。</p>
+</blockquote>
+<p><br></p>
+<img src="http://p0.qhimg.com/t0112b2f44d21582080.png" />
+
+</article></section></slide>
+<slide class="slide"><section class="slide-wrapper"><article>
+<h2>结束语</h2>
+<p><br></p>
+<blockquote>
+<p>活动不大坑不少，忧虑意识不可少；</p>
+<p>线下多用心，线上少烦恼；</p>
+<p>困难不放弃，bug也吓跑；</p>
+</blockquote>
+
+</article></section></slide>
+        
+
+        <!-- <slide class="slide logoslide dark nobackground">
+            <article class="flexbox vcenter">
+                <h2 style="color: white;">Powered By nodeppt v1.4.5</h2>
+            </article>
+        </slide> -->
+        <div class="slideTip" id="tip"></div>
+    </slides>
+</div>
+<canvas id="drawBoard" class="draw-board" width="900" height="700"></canvas>
+<div class="progress"><span id="progress"></span></div>
+<div id="_buttons">
+    <div class="_btn-box" id="_btn-box" style="display:none;">
+        <button class="fa fa-arrow-circle-left" id="_btn-prev"></button>
+        <button class="fa fa-arrow-circle-right" id="_btn-next"></button>
+        <button class="fa fa-paint-brush" id="_btn-brush"></button>
+        <button class="fa fa-compress" id="_btn-overview" data-toggle="fa fa-expand"></button>
+    </div>
+    <button class="fa fa-bars" id="_btn-bar"  data-toggle="fa fa-close"></button>
+</div>
+<script src="./js/mixjs/lib/mix.0.3.0.min.js"></script>
+<script>
+    var ASSET_RELATIVE_DIR = ".";
+</script>
+<script>
+var base = location.protocol + '//' + location.host;
+
+var path = (location.pathname + '#').split('/').filter(function(v){
+    return !!v;
+});
+path.pop();
+path = path.join('/');
+if (typeof ASSET_RELATIVE_DIR === 'string') {
+    path = path + '/' + ASSET_RELATIVE_DIR;
+}
+MixJS.config({
+    baseURL: [ base, path, 'js'].join('/')+'/'
+});
+
+</script>
+<script src="./js/mixjs/lib/event/broadcast.js"></script>
+<script src="./js/nodeppt.js"></script>
+<script>
+Slide.init({
+    containerID: 'container',
+    drawBoardID: 'drawBoard',
+    slideClass: '.slide',
+    buildClass: '.build',
+    progressID: 'progress',
+    transition: 'slide ',
+    width: 1100,
+    dir: './',
+    
+    //打开下面的注释就开启postMessage方式
+    //访问网址127.0.0.1:8080/ppt/demo#client
+    control:{
+        type: 'postMessage',
+        args:{
+            isControl:  false
+        }
+    },
+    
+    tipID: 'tip'
+});
+MixJS.loadJS('highlight/highlight.pack.js',function(){
+    hljs.tabReplace = '  ';
+    hljs.initHighlightingOnLoad();
+});
+</script>
+<script src="./js/demo.js"></script>
+<link rel="stylesheet" href="./css/demo.css">
+
+<!--placeholder-->
+</body>
+</html>

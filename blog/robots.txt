@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: img
+
+Sitemap: http://jeanphorn.github.io/sitemap.xml

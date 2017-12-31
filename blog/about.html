@@ -1,0 +1,94 @@
+---
+layout: page
+title: "About"
+description: "About jeanphorn."
+header-img: "img/about-bg-desktop.jpg"
+---
+
+<!-- Language Selector -->
+<select onchange= "onLanChange(this.options[this.options.selectedIndex].value)">
+    <option value="0" selected> 中文 Chinese </option>
+    <option value="1"> 英语 English </option>
+</select>
+
+<!-- Chinese Version -->
+<div class="zh">
+    <blockquote>
+       	大胆想象。
+        勇于实践。
+    </blockquote>
+
+	<p> 李建方，中国传媒大学 13级研究生，网络安全方向，目前在奇虎360手机卫士部门实习工作。不折不扣的程序猿，崇拜HD Moore， Jeff Dean，tombkeeper等大牛，梦想有一天能成为像他们一样的任务。</p>
+	 
+	<p>喜欢运动和健身，周末经常和小伙伴们相约打羽毛球。</p>
+
+	个人主要技能：
+	 <ul>
+        <li> 精通c++编程，熟悉网络编程； </li>
+        <li> 熟悉linux系统，shell命令； </li>
+        <li> 熟悉java，php，有一点Python基础 </li>
+        <li> 了解Hadoop和storm技术，有一定的Hadoop MapReduce和storm开发经验</li>
+        <li> 渗透测试 </li>
+    </ul>	
+	</div>
+
+<!-- English Version -->
+<div class="en">
+    <blockquote>
+        Designer or Engineer, things in between.
+    </blockquote>
+</div>
+
+<!-- Handle Language Change -->
+<script type="text/javascript">
+    var $zh = document.querySelector(".zh");
+    var $en = document.querySelector(".en");
+    function onLanChange(index){
+        if(index == 0){
+            $zh.style.display = "block";
+            $en.style.display = "none";
+        }else{
+            $en.style.display = "block";
+            $zh.style.display = "none";
+        }
+    }
+    onLanChange(0);
+</script>
+
+
+
+{% if site.duoshuo_username %}
+<!-- 多说评论框 start -->
+    <div class="comment">
+        <div class="ds-thread"
+        {% if site.duoshuo_username =="小猿12" %}
+            data-thread-id="1187623191091085319"
+        {% else %}
+            data-thread-key="{{site.duoshuo_username}}/about"
+        {% endif %}
+
+        data-title="{{page.title}}"
+        data-url="{{site.url}}/about/"></div>
+    </div>
+<!-- 多说评论框 end -->
+
+<!-- Duoshuo hacking -->
+<input id="dsUser" type="hidden" value="{{site.duoshuo_username}}"  />
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User hacking by Hux
+    var _user = document.getElementById('dsUser').value;
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+{% endif %}
